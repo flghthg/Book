@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="b">
+
+    <select id="Login_one" parameterType="java.lang.String" resultType="login">
+    select * from join where u_id=#{u_id}
+    </select>
+   <insert id="insert_inform" parameterType="login">  
+   insert into join values(seq_join_idx.nextVal,#{u_name},#{u_id},#{u_pwd},#{u_email},
+   #{u_addr},#{u_tel})
+   </insert>
+   <update id="modify_inform" parameterType="login" >
+   update join set u_name=#{u_name},u_id=#{u_id}, u_pwd=#{u_pwd}, u_email=#{u_email}, u_addr=#{u_addr}, u_tel=#{u_tel} where u_id=#{u_id}
+   </update>
+   
+   <select id="Login_o" parameterType="java.lang.String" resultType="login">
+    select * from join where u_id=#{id}
+    </select>
+   
+	
+	
+</mapper>
+
+
+
+
+
+
+

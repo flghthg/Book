@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id = "login_daoBean" class="dao.LoginDAO">
+	<property name="sqlSession" ref="sqlSessionBean"></property>  
+	</bean>   
+	
+	 <bean id="board_daoBean" class="dao.BoardDAO"> 
+		<property name="sqlSession" ref="sqlSessionBean"></property>
+	</bean>	
+	
+	<bean id="qna_daoBean" class="dao.QnaDAO"> 
+		<property name="sqlSession" ref="sqlSessionBean"></property>
+	</bean>		
+	
+	 <bean id="book_daoBean" class="dao.BookDAO">
+		<property name="sqlSession" ref="sqlSessionBean"></property>
+	</bean>
+	<bean id="main_daoBean" class="dao.MainDAO">
+	  	<property name= "sqlSession" ref="sqlSessionBean"></property>
+	 </bean>
+	 
+	 <bean id="cart_daoBean" class="dao.CartDAO">
+	  	<property name= "sqlSession" ref="sqlSessionBean"></property>
+	 </bean>
+	 
+	 <bean id="review_daoBean" class="dao.ReviewDAO">
+	  	<property name= "sqlSession" ref="sqlSessionBean"></property>
+	 </bean>
+</beans>  

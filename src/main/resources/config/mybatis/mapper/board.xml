@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="b">
+	
+	<!-- 전체 게시글 조회 -->
+	<select id="board_list" resultType="board">
+		select * from notice order by idx desc
+	</select>
+	
+	<!-- 전체 게시글 조회 qna-->
+	<select id="qna_list" resultType="qna">
+		select * from qna order by ref desc, step
+	</select>
+	
+	<!-- 새글 쓰기 -->
+	 <insert id="qna_insert" parameterType="qna">
+		insert into qna values(
+			#{idx}, 
+			#{name}, 
+			#{subject}, 
+			#{content}, 
+			#{pwd}, 
+			#{ip}, 
+			sysdate, 
+			0, 
+			#{idx}, 
+			0, 
+			0,
+			0,
+			0
+		)
+	</insert> 
+	
+	<!-- idx에 해당하는 게시글 조회 -->
+	<select id="board_one" parameterType="int" resultType="board">
+		select * from notice where idx=#{idx}
+	</select>
+	
+	<!-- idx에 해당하는 게시글 조회 qna -->
+	<select id="qna_one" parameterType="int" resultType="qna">
+		select * from qna where idx=#{idx}
+	</select>
+	
+	<!-- idx에 해당하는 게시글 조회수 증가 -->
+	 <update id="qna_update_readhit" parameterType="int">
+		update qna set readhit = readhit + 1
+		where idx=#{idx}
+	</update>
+	
+	<!-- step값 증가 -->
+	<update id="qna_update_step" parameterType="qna">
+		update qna set step= step+1
+		where ref=#{ref} and step > #{step}
+	</update>
+	
+	<!--댓글 달기-->
+	<insert id="qna_reply" parameterType="qna">
+		insert into qna values(
+			0, 
+			#{name}, 
+			#{subject}, 
+			#{content}, 
+			#{pwd}, 
+			#{ip}, 
+			sysdate, 
+			0, 
+			#{ref}, 
+			#{step}, 
+			#{depth},
+			0,
+			0
+		)
+	</insert> 
+	
+	<!-- idx와 일치하는 ref에 해당 게시물 -->
+	<select id="qna_re" resultType="qna">
+		select * from qna where ref=#{idx} and depth=1
+	</select>
+	
+	 <!-- 삭제하고자 하는 게시글 검색 -->
+	<select id="qna_idx_pwd" parameterType="java.util.HashMap" resultType="qna">
+		select * from qna where idx=#{idx} and pwd=#{pwd}
+	</select><!-- #{idx}은 hashmap의 key값 -->
+	
+	<!--게시글 삭제 (된것처럼 업데이트) -->
+	<update id="qna_del_update" parameterType="qna">
+		update qna set
+		idx=0, subject=#{subject}, name=#{name}, del_info = -1 
+		where idx=#{idx}
+	</update>
+	
+	<!-- 페이지에 따른 게시물 조회 -->
+	 <select id="board_list_condition" parameterType="java.util.Map"
+			resultType="board">
+		select * from
+		 	( select rank() over( order by idx desc ) no, b.*
+		    from ( select * from notice ) b )
+			where no between #{start} and #{end}
+	</select>
+	
+	<!-- 전체게시물 수 -->
+	<select id="board_count" resultType="int">
+		select count(*) from notice
+	</select>
+	
+	<!-- 페이지에 따른 게시물 조회 -->
+	 <select id="qna_list_condition" parameterType="java.util.Map"
+			resultType="qna">
+		select * from
+		 	( select rank() over( order by idx desc ) no, b.*
+		    from ( select * from qna ) b )
+			where no between #{start} and #{end}
+	</select>
+	
+	<!-- 전체게시물 수 -->
+	<select id="qna_count" resultType="int">
+		select count(*) from qna where idx>0
+	</select>
+	
+	
+	<!-- 수정한정보 업데이트 -->
+	<update id="qna_update" parameterType="qna">
+		update qna set name=#{name}, content=#{content}, pwd=#{pwd}, ip=#{ip}, regdate=sysdate where idx=#{idx}
+	</update>
+	
+	
+	<!-- del_info 이용하기 -->
+	<update id="qna_del_re" parameterType="int">
+		update qna set del_info=1 where idx=#{idx}
+	</update>
+	
+	
+	<!-- 삭제할게시판의 idx보다 큰 idx값을 -1시켜줌. -->
+	<update id="qna_del_idx" parameterType="int">
+ 		update qna set idx=idx-1
+		 where idx > #{idx}
+	</update>
+	
+	
+	
+	<!-- check했을경우의 새글 쓰기 -->
+	 <insert id="qna_ch_insert" parameterType="qna">
+		insert into qna values(
+			#{idx}, 
+			#{name}, 
+			#{subject}, 
+			#{content}, 
+			#{pwd}, 
+			#{ip}, 
+			sysdate, 
+			0, 
+			#{idx}, 
+			0, 
+			0,
+			0,
+			1
+		)
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

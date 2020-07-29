@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="book">
+	<select id="book_list" resultType="book" 
+	        parameterType="java.lang.String">
+		select * from book where category=#{category}	
+	</select>
+	
+	<select id="book_one" resultType="book" parameterType="int">
+		select * from book where idx=#{idx}
+	</select>
+	
+	<!-- 전체 게시물 조회 -->
+	<select id="name_list" resultType="book">
+		select * from book
+	</select>
+	
+	<select id="search_name" parameterType="java.lang.String" resultType="book">
+		select * from book where b_name=#{b_name}
+	</select>
+	
+	
+	
+	
+	<select id="review_list" resultType="review" parameterType="java.lang.String">
+		select * from review where r_book = #{r_book}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+

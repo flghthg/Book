@@ -1,0 +1,20 @@
+--리뷰테이블
+--날짜도 추가해야함.
+create table review(
+	name VARCHAR2(50), --db에 3으로넣어서 수정해야함....
+	r_book VARCHAR2(100),
+	r_content VARCHAR2(100),
+	star NUMBER(3),
+ 	regdate DATE 
+); 
+
+--샘플 데이터
+insert into review values(
+	'길',
+	'셜록 홈즈',
+	'ㅇㅇ거의뭐',
+	3,
+	sysdate	
+);
+
+commit;

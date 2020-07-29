@@ -1,0 +1,63 @@
+공지사항 db
+관리자만 댓글을 달수 있도록.
+
+--시퀀스
+create sequence seq_notice_idx;
+
+--table생성
+--가장 마지막에 작성한게 제일 먼저 올라오게끔.
+create table notice(
+	idx NUMBER(3) primary key, --공지사항 일련번호
+	name VARCHAR2(50) not null, --작성자
+	content VARCHAR2(2000) not null, --내용
+	ip VARCHAR2(100),--ip
+	subject VARCHAR2(250) not null, --게시글 제목
+ 	regdate DATE --작성일
+);
+
+
+고객문의 db
+--시퀀스
+create sequence seq_qna_idx;
+
+--table생성
+--가장 마지막에 작성한게 제일 먼저 올라오게끔.
+
+create table qna(
+	idx NUMBER(3) not null, --공지사항 일련번호
+	name VARCHAR2(50) not null, --작성자
+	subject VARCHAR2(250) not null, --제목
+	content VARCHAR2(2000) not null, --내용
+	pwd VARCHAR2(50) not null, --비번
+	ip VARCHAR2(20) not null, 
+ 	regdate DATE, --작성일
+	readhit NUMBER(4) default 0, --조회수(기본값0)
+	ref NUMBER(3), --기준글번호(댓글을 달기위한 메인글의 idx)
+	step NUMBER(3), --댓글의 순서
+	depth NUMBER(3), --댓글의 깊이
+	del_info NUMBER(3),
+	ch NUMBER(3)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap');     
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
+
+*{margin:0; padding:0;}
+.clearfix::after{content:""; display:block; clear:both;}
+.margin{margin:0 auto;}
+body{background-color:#000;}
+
+li{font-family: 'Roboto Slab', serif;
+	list-style:none;}
+li a{color:#fff;
+		text-decoration:none;}
+div{width:1000px;}
+h2{margin-top:100px;
+	font-family:'Permanent Marker';
+	font-size:50px;
+	color:#fff;
+	text-align:center;
+	line-height:140px;}
+.category{text-align:center;}
+.category li{float:left;
+				width:155px;/* 카테고리 갯수 정하고 추후 넓이 계산 */
+				margin-left:14px;
+				text-align:center;
+				font-size:15px;
+				line-height:60px;}
+.category li:nth-child(1){margin-left:0;}
+.list{margin-top:30px;}
+.list li{width:235px;
+		margin-top:10px;
+		margin-left:20px;
+		float:left;
+		text-align:center;}
+.list li img{width:235px;
+				height:300px;
+				margin-bottom:10px;}
+.list li:nth-child(4n+1){margin-left:0;}
+.list #none{width:1000px;
+			color:#fff;}

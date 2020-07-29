@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="m">
+	
+	
+	<!-- 목록 검색 -->
+	<select id="main_list" resultType="main">
+	select * from (select * from main order by idx desc)
+    where 5 > rownum
+	</select>
+	<!-- 검색목록 추가 -->
+	<insert id="main_insert" parameterType="main">
+	insert into main values(
+		seq_main_idx.nextVal,
+		#{title},
+		#{thumbnail},
+		#{price},
+		#{ip}
+	)
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

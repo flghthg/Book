@@ -1,0 +1,35 @@
+--장바구니의 일련번호
+create sequence seq_cart_idx2;
+
+--장바구니 테이블
+create table cart(
+	c_idx NUMBER(3) primary key, 
+	c_cnt NUMBER(3) not null, --수량
+	p_idx NUMBER(3), --상품번호
+	m_idx NUMBER(3) not null --회원번호
+);
+
+--p_idx(cart)와 idx(product)를 외래키로 지정
+alter table cart
+add constraint fk_cart_p_idx foreign key( p_idx )
+references book( idx );
+
+--임시데이터( 회원번호는 임시로1을 넣도록 한다 )
+--insert into cart values( 시퀀스, 수량,  product에 존재하는 상품번호, 1 );
+insert into cart values( seq_cart_idx2.nextVal, 1, 1, 1 );
+insert into cart values( seq_cart_idx2.nextVal, 1, 2, 1 );
+commit;
+
+--join을 통한 조회정보 추출
+create or replace view cart_view AS
+select idx p_idx, 
+         	c_idx,  
+         	b_name, 
+         	b_price,  
+	c_cnt, 
+	m_idx, 
+	b_content,
+	b_company,
+	c_cnt * b_price amount
+from book p INNER JOIN cart c ON p.idx = c.p_idx;
+	

@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap');     
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
+
+*{margin:0; padding:0;}
+.clearfix::after{content:""; display:block; clear:both;}
+.margin{margin:0 auto;}
+a{text-decoration:none;}
+
+body{background-color:#000;
+	color:#fff;}
+
+.main{width:800px;
+		position:relative;
+		margin-top:150px;}
+
+h2{margin-top:20px;
+	font-family:'Permanent Marker';
+	font-size:30px;
+	color:#fff;
+	line-height:60px;}
+	
+#tableb,#tabled,#tablee{display:none;}
+
+.book_info table{width:800px;
+			margin-top:20px;
+			margin-bottom:30px;}
+.book_info table th{line-height:25px;}
+#img{width:100px;
+		height:100px;
+		background-color:#f12345}
+
+.deliver_info{margin-top:20px;
+				margin-bottom:30px;}
+.deliver_info>input:nth-child(2){margin-left:10px;}	
+.deliver_info table{width:800px;}
+.deliver_info table input{width:600px;
+							height:20px;
+							margin-top:15px;
+							color:#5d5d5d;}
+
+.pay_info{margin-top:20px;
+				margin-bottom:30px;}
+.radio{margin-top:5px;
+		margin-bottom:15px;}
+.radio input{margin-left:10px;}
+.radio input:nth-child(1){margin-left:0;}
+#tablec input{width:500px;
+				height:20px;
+				margin-top:15px;
+				color:#5d5d5d;}
+#tablec select{width:505px;
+				height:25px;
+				margin-top:15px;
+				color:#5d5d5d;}
+#paid{width:200px;
+		height:100px;}
+#paid input{width:200px;
+			height:50px;
+			margin-top:20px;}
+
+#card{width:100%;
+		height:100%;
+		font-size:20px;
+		line-height:40px;
+		color:#000;}
+#card1{width:100%;
+		height:100%;
+		background-color:#000;
+		opacity:0.5;
+		top:0;
+		position:absolute;
+		display:none;}
+#card2{width:600px;
+		height:280px;
+		background-color:#c5c5c5;
+		position:absolute;
+		top:25%;
+		left:25%;
+		display:none;}
+#card select{height:25px;}
+#card input{height:20px;}
+#card input:nth-child(3),input:nth-child(4),input:nth-child(5),input:nth-child(6){width:50px;}
+#card2 div{margin-right:10px;
+			text-align:right;}
+#card p{margin-left:10px;}
+#card #card_paid{width:200px;
+					height:25px;
+					margin:0 auto;
+					margin-top:20px;
+					display:block;}	

@@ -1,0 +1,40 @@
+메인 검색기록 DB
+
+
+--시퀀스
+create sequence seq_main_idx;
+
+--table생성
+--가장 마지막에 작성한게 제일 먼저 올라오게끔.
+create table main(
+	idx NUMBER(3) primary key, --공지사항 일련번호
+	title VARCHAR2(50) not null, --책제목
+	thumbnail VARCHAR2(2000) not null, --이미지
+	price VARCHAR2(100),--가격
+	IP VARCHAR2(100)--IP
+);
+
+insert into main values( seq_main_idx.nextVal,
+		      '기본책2',		      'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F814112%3Ftimestamp%3D20200402132057',
+		      '9999',
+		      '192.168.101.1'
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
